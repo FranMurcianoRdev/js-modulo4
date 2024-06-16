@@ -48,7 +48,7 @@ console.log(`%c${grupo1.nombre}`, tituloGrupo)
 console.log(`Fundado en: ${grupo1.añoFundacion}, activo: ${grupo1.activo}, genero musical: ${grupo1.genero}`)
 //grupo2
 console.log(`%c${grupo2.nombre}`, tituloGrupo)
-console.log(`Fundado en: ${grupo2.añoFundacion}, activo: ${grupo2.activo}, genero musical: ${grupo3.genero}`)
+console.log(`Fundado en: ${grupo2.añoFundacion}, activo: ${grupo2.activo}, genero musical: ${grupo2.genero}`)
 //grupo3
 console.log(`%c${grupo3.nombre}`, tituloGrupo)
 console.log(`Fundado en: ${grupo3.añoFundacion}, activo: ${grupo3.activo}, genero musical: ${grupo3.genero}`)
