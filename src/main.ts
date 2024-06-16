@@ -1,60 +1,78 @@
-// Crear los grupos
-interface Grupo {
-    nombre: string; 
-    añoFundacion: number;
-    activo: boolean;
-    genero: string;
+//función para aumentar un numero al turno
+function sumarTurno() {
+  const numeroTurnoElement = document.getElementById('numero-turno');
+
+  if (numeroTurnoElement) {
+    // como es un h1 y no un input se usa innerText
+    let numeroActual = parseInt(numeroTurnoElement.innerText); 
+    // comprobamos que el numeroActual no sea NaN
+    if (!isNaN(numeroActual)) {
+      const numeroSiguiente = numeroActual + 1;
+      numeroTurnoElement.innerText = numeroSiguiente.toString().padStart(2, '0'); // padStart para que siempre tenga dos números en este caso y que si el número introducido no tiene 2 dígitos, se rellenen con 0 a la izquierda.
+    }
+  }
 }
 
-const grupo1 : Grupo = {
-    nombre: "The Beatles",
-    añoFundacion: 1960,
-    activo: true,
-    genero: "🎵 Pop Rock",
-};
+// función para restar un turno
+function restarTurno() {
+  const numeroTurnoElement = document.getElementById('numero-turno');
 
-const grupo2 : Grupo = {
-    nombre: "Queen",
-    añoFundacion: 1970,
-    activo: false,
-    genero: "🎸 Rock",
-};
+  if (numeroTurnoElement) {
+    // como es un h1 y no un input se usa innerText
+    let numeroActual = parseInt(numeroTurnoElement.innerText); 
+    // comprobamos que el numeroActual no sea NaN
+    if (!isNaN(numeroActual)) {
+      const numeroSiguiente = numeroActual - 1;
+      numeroTurnoElement.innerText = numeroSiguiente.toString().padStart(2, '0');
+    }
+  }
+}
 
-const grupo3 : Grupo = {
-    nombre: "AC DC",
-    añoFundacion: 1973,
-    activo: true,
-    genero: "🤘 Hard Rock",
-};
+// función para restar un turno
+function resetearTurnos() {
+  const numeroTurnoElement = document.getElementById('numero-turno');
 
-const grupo4 : Grupo = {
-    nombre: "Ludwig van Beethoven",
-    añoFundacion: 1770,
-    activo: false,
-    genero: "🎼 Clásica",
-};
+  if (numeroTurnoElement) {
+    // como es un h1 y no un input se usa innerText
+    let numeroActual = parseInt(numeroTurnoElement.innerText); 
+    // comprobamos que el numeroActual no sea NaN
+    if (!isNaN(numeroActual)) {
+      const numeroSiguiente = 0;
+      numeroTurnoElement.innerText = numeroSiguiente.toString().padStart(2, '0');
+    }
+  }
+}
 
-const grupo5 : Grupo = {
-    nombre: "The Rolling Stones",
-    añoFundacion: 1962,
-    activo: true,
-    genero: "🎸 Rock",
-};
+//evento para el boton "siguiente turno"
+const sumarBoton = document.getElementById('siguiente');
+if (sumarBoton) {
+  sumarBoton.addEventListener('click', sumarTurno);
+}
 
-// mostrar por consola
-const tituloGrupo = "font-weight: bold; font-size: 18px; background-color: green; "
-//grupo1
-console.log(`%c${grupo1.nombre}`, tituloGrupo)
-console.log(`Fundado en: ${grupo1.añoFundacion}, activo: ${grupo1.activo}, genero musical: ${grupo1.genero}`)
-//grupo2
-console.log(`%c${grupo2.nombre}`, tituloGrupo)
-console.log(`Fundado en: ${grupo2.añoFundacion}, activo: ${grupo2.activo}, genero musical: ${grupo2.genero}`)
-//grupo3
-console.log(`%c${grupo3.nombre}`, tituloGrupo)
-console.log(`Fundado en: ${grupo3.añoFundacion}, activo: ${grupo3.activo}, genero musical: ${grupo3.genero}`)
-//grupo4
-console.log(`%c${grupo4.nombre}`, tituloGrupo)
-console.log(`Fundado en: ${grupo4.añoFundacion}, activo: ${grupo4.activo}, genero musical: ${grupo4.genero}`)
-//grupo5
-console.log(`%c${grupo5.nombre}`, tituloGrupo)
-console.log(`Fundado en: ${grupo5.añoFundacion}, activo: ${grupo5.activo}, genero musical: ${grupo5.genero}`)
+//evento para el boton "turno anterior"
+const restarBoton = document.getElementById('atras');
+if (restarBoton) {
+  restarBoton.addEventListener('click', restarTurno);
+}
+
+//evento para resetear el contador
+const resetearContadorBoton = document.getElementById('reset');
+if (resetearContadorBoton) {
+  resetearContadorBoton.addEventListener('click', resetearTurnos);
+}
+
+
+// función para establecer un turno a partir de un input introducido: 
+
+function actualizarTurno() {
+//obtener el nuevo valor del turno, como es un input usamos value y tiene que ser de HTMLinputelement
+  const numeroIntroducido = document.getElementById('contador-texto') as HTMLInputElement;
+  const numeroSiguiente = numeroIntroducido.value; // no es necesario hacer un parse porque aquí ya se trabaja con Strings, al igual que al aplicar el nuevo valor.
+
+  // aplicar el nuevo valor
+  const elementoH1 = document.getElementById('numero-turno');
+  elementoH1!.innerText = numeroSiguiente.padStart(2, '0');
+}
+//crear el evento al pulsar el botón de enviar
+const enviarBoton = document.getElementById('actualizar-turno');
+enviarBoton!.addEventListener('click', actualizarTurno);
